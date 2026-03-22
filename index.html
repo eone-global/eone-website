@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#1B2F6E" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1B3D" media="(prefers-color-scheme: dark)">
+<title>EONE — We Open Asia.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap&font-display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<style>
+:root {
+  --navy:   #1B2F6E;
+  --navy2:  #152660;
+  --blue:   #2D4FD6;
+  --blue-l: #EEF2FF;
+  --blue-m: #C7D2FE;
+  --white:  #FFFFFF;
+  --off:    #F7F8FC;
+  --off2:   #EFF1F8;
+  --g1:     #E2E5F0;
+  --g2:     #A8AECA;
+  --g3:     #6B7494;
+  --g4:     #3D4468;
+  --text:   #111827;
+  --nh:     64px;
+  --mx:     1180px;
+  --rad:    12px;
+  --sh:     0 2px 12px rgba(27,47,110,.08), 0 1px 3px rgba(27,47,110,.05);
+  --sh2:    0 8px 32px rgba(27,47,110,.13), 0 2px 8px rgba(27,47,110,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  -moz-text-size-adjust:100%;
+  text-size-adjust:100%;
+  height:-webkit-fill-available;
+}
+body{
+  font-family:'Nunito Sans',sans-serif;
+  background:var(--white);color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  position:relative;
+  min-height:100vh;
+  min-height:-webkit-fill-available;
+  /* Prevent font scaling on orientation change - Android */
+  text-size-adjust:none;
+  -webkit-text-size-adjust:none;
+}
+/* Only hide system cursor on true pointer (mouse) devices */
+@media(pointer:fine){
+  body{cursor:none}
+  a,button{cursor:none}
+}
+
+/* ── CURSOR — desktop only, no mix-blend-mode for Windows ── */
+#cur{
+  position:fixed;top:-20px;left:-20px;z-index:9999;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--blue);pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:width .22s cubic-bezier(.22,1,.36,1),
+             height .22s cubic-bezier(.22,1,.36,1),
+             background .22s,opacity .22s;
+  will-change:left,top;
+  opacity:0;
+}
+#cur.active{opacity:1}
+#cur.big{width:38px;height:38px;background:var(--navy);opacity:.2}
+/* Hide on touch/mobile — use @media pointer */
+@media(pointer:coarse){
+  #cur{display:none!important}
+  body{cursor:auto!important}
+}
+@media(hover:none){
+  #cur{display:none!important}
+  body{cursor:auto!important}
+}
+
+/* ── SHIMMER ── */
+@keyframes shim{
+  0%  {transform:translateX(-130%) skewX(-10deg)}
+  100%{transform:translateX(280%)  skewX(-10deg)}
+}
+.shim{position:relative;overflow:hidden}
+.shim::before{
+  content:'';position:absolute;inset:0;width:45%;z-index:6;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:translateX(-130%) skewX(-10deg);pointer-events:none;
+}
+.shim:hover::before{animation:shim .6s ease forwards}
+.shim-dk::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+
+/* ── REVEAL ── */
+@keyframes fadeup{
+  from{opacity:0;transform:translateY(20px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+.rv{opacity:0;transform:translateY(20px)}
+.rv.in{animation:fadeup .6s cubic-bezier(.22,1,.36,1) both;opacity:1;transform:none}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:var(--nh);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;
+  background:rgba(255,255,255,.97);
+  /* backdrop-filter with fallback */
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--g1);
+  transition:box-shadow .3s;
+}
+/* Windows Firefox fallback - no backdrop-filter support */
+@supports not (backdrop-filter:blur(1px)){
+  #nav{background:rgba(255,255,255,.99)}
+}
+#nav.scr{box-shadow:0 2px 20px rgba(27,47,110,.1)}
+.logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1.5rem;letter-spacing:.04em;
+  color:var(--navy);text-decoration:none;
+}
+.nlinks{display:flex;gap:2rem;list-style:none;align-items:center}
+.nlinks a{
+  font-size:.78rem;font-weight:600;color:var(--g3);
+  text-decoration:none;letter-spacing:.03em;
+  transition:color .2s;
+}
+.nlinks a:hover,.nlinks a.on{color:var(--navy)}
+.ncta{
+  background:var(--blue);color:var(--white);border:none;
+  padding:.52rem 1.35rem;font-size:.78rem;font-weight:700;
+  font-family:inherit;letter-spacing:.03em;
+  border-radius:6px;
+  box-shadow:0 4px 12px rgba(45,79,214,.3);
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.ncta:hover{background:var(--navy);transform:translateY(-1px);box-shadow:0 6px 18px rgba(27,47,110,.35)}
+.ham{display:none;background:none;border:none;cursor:none;flex-direction:column;gap:5px;padding:4px}
+.ham span{width:22px;height:2px;background:var(--navy);display:block;border-radius:1px;transition:all .25s}
+#mob{
+  display:none;position:fixed;top:var(--nh);left:0;right:0;z-index:490;
+  background:var(--white);border-bottom:1px solid var(--g1);
+  padding:.5rem 1.5rem 1rem;box-shadow:0 8px 24px rgba(27,47,110,.1);
+}
+#mob.open{display:block}
+#mob a{display:block;padding:.7rem 0;border-bottom:1px solid var(--g1);font-size:.88rem;font-weight:600;color:var(--text);text-decoration:none}
+
+/* ── SPY DOTS ── */
+#spy{
+  position:fixed;right:1.6rem;top:50%;transform:translateY(-50%);
+  z-index:490;display:flex;flex-direction:column;gap:10px;
+}
+.sw{display:flex;align-items:center;justify-content:flex-end;gap:8px;cursor:none}
+.stip{
+  font-size:.62rem;font-weight:600;letter-spacing:.05em;
+  color:var(--text);background:var(--white);border:1px solid var(--g1);
+  padding:.22rem .55rem;border-radius:4px;opacity:0;
+  transition:opacity .2s;white-space:nowrap;pointer-events:none;
+  box-shadow:var(--sh);
+}
+.sw:hover .stip{opacity:1}
+.sd{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+  border:2px solid var(--g2);background:transparent;transition:all .3s;
+}
+.sw.on .sd{background:var(--blue);border-color:var(--blue);transform:scale(1.35)}
+.sw:hover:not(.on) .sd{border-color:var(--blue);background:var(--blue-m)}
+#spy.dk .sd{border-color:rgba(255,255,255,.4)}
+#spy.dk .sw.on .sd{background:white;border-color:white}
+#spy.dk .stip{background:var(--navy);color:white;border-color:rgba(255,255,255,.15)}
+
+/* ── SHARED ── */
+.wrap{max-width:var(--mx);margin:0 auto;padding:0 3rem}
+.sec{padding:7rem 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:.85rem;
+}
+.eyebrow::before{content:'';width:16px;height:2px;background:var(--blue);border-radius:1px;flex-shrink:0}
+.eyebrow.lt{color:rgba(255,255,255,.6)}
+.eyebrow.lt::before{background:rgba(255,255,255,.4)}
+.h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:clamp(2rem,3.5vw,3.2rem);
+  letter-spacing:.01em;line-height:1.05;color:var(--navy);
+  margin-bottom:.65rem;
+}
+.h2 span{color:var(--blue)}
+.h2.lt{color:white}
+.h2.lt span{color:#93C5FD}
+.sub{font-size:.95rem;color:var(--g3);font-weight:300;line-height:1.8;max-width:440px}
+.sub.lt{color:rgba(255,255,255,.55)}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:3rem;margin-bottom:3rem}
+.shead .sub{max-width:380px}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  min-height:100dvh;
+  padding-top:var(--nh);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  background:#0d1b3e; /* fallback when images fail to load */
+}
+.hero-slides{
+  position:absolute;inset:0;z-index:0;
+}
+.hero-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  background-color:#0d1b3e;
+  opacity:0;transition:opacity 1.4s ease;
+}
+.hero-slide.active{opacity:1}
+.hero-slide::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(17,24,39,.6) 0%,
+    rgba(17,24,39,.4) 50%,
+    rgba(17,24,39,.65) 100%
+  );
+}
+.hero-city-label{
+  position:absolute;bottom:2.5rem;left:3rem;z-index:10;
+  display:flex;align-items:center;gap:1.5rem;
+}
+.hero-progress{display:none}
+.city-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.78rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  transition:color .4s;
+}
+.city-name.active{color:rgba(255,255,255,.95)}
+.hero-progress{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  height:2px;background:rgba(255,255,255,.12);
+}
+.hero-progress-bar{
+  height:100%;background:white;width:0%;
+  transition:width linear;
+}
+.hinner{
+  position:relative;z-index:5;
+  max-width:var(--mx);margin:0 auto;width:100%;
+  padding:4rem 3rem;
+}
+.hh1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:clamp(3rem,7.5vw,8rem);
+  line-height:.93;letter-spacing:.01em;color:white;
+  margin-bottom:2.75rem;
+}
+.hh1 em{
+  font-style:normal;display:block;
+  color:rgba(255,255,255,.7);
+}
+.hbar{
+  display:block;
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:2.5rem;
+}
+.hsub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(1.3rem,2.2vw,2rem);
+  color:white;
+  line-height:1.3;
+  font-weight:600;
+  letter-spacing:.01em;
+  max-width:720px;
+}
+.hsub em{
+  font-style:normal;
+  color:rgba(255,255,255,.52);
+  font-weight:400;
+}
+
+/* ── SERVICES ── */
+#services{background:var(--navy)}
+.sgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;margin-top:3rem;
+}
+.scard{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--rad);padding:2.5rem 2.25rem;
+  transition:all .25s;cursor:default;
+}
+.scard:hover{background:rgba(255,255,255,.09);border-color:rgba(147,197,253,.4);transform:translateY(-3px)}
+.snum{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:3.5rem;font-weight:900;line-height:1;
+  color:rgba(255,255,255,.07);margin-bottom:1.5rem;
+  transition:color .25s;
+}
+.scard:hover .snum{color:rgba(147,197,253,.2)}
+.stitle{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.2rem;font-weight:800;
+  color:white;margin-bottom:.65rem;letter-spacing:.01em;
+}
+.sbody{font-size:.84rem;color:rgba(255,255,255,.48);line-height:1.75;font-weight:300}
+
+/* ── MARKETS ── */
+#markets{background:var(--off);border-top:1px solid var(--g1);border-bottom:1px solid var(--g1)}
+.mgrid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.25rem;margin-top:3rem;
+}
+.mcard{
+  background:var(--white);border-radius:var(--rad);
+  padding:2.25rem 2.5rem;box-shadow:var(--sh);
+  transition:all .25s;cursor:default;
+  border:1px solid var(--g1);
+}
+.mcard:hover{box-shadow:var(--sh2);border-color:var(--blue-m)}
+@media(hover:hover){.mcard:hover{transform:translateY(-3px)}}
+.mregion{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:1.35rem;
+  color:var(--navy);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.65rem;letter-spacing:.01em;
+}
+.mregion::before{
+  content:'';width:10px;height:10px;border-radius:50%;
+  background:var(--blue);flex-shrink:0;
+}
+.mnote{font-size:.84rem;color:var(--g3);font-weight:300;line-height:1.65}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--navy)}
+.exp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  margin-top:3rem;
+}
+.exp-card{
+  position:relative;overflow:hidden;
+  border-radius:var(--rad);
+  height:220px;
+  cursor:default;
+}
+.exp-card-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .5s ease;
+}
+.exp-card:hover .exp-card-bg{transform:scale(1.06)}
+.exp-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(11,20,55,.88) 0%,
+    rgba(11,20,55,.4) 60%,
+    rgba(11,20,55,.15) 100%
+  );
+  transition:background .3s;
+}
+.exp-card:hover .exp-card-overlay{
+  background:linear-gradient(
+    to top,
+    rgba(27,47,110,.92) 0%,
+    rgba(45,79,214,.35) 60%,
+    rgba(45,79,214,.1) 100%
+  );
+}
+.exp-card-content{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:1.75rem 1.75rem;
+}
+.exp-card-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:1.25rem;letter-spacing:.02em;
+  color:white;line-height:1.2;
+  text-shadow:0 1px 4px rgba(0,0,0,.3);
+}
+
+/* ── TEAM ── */
+#team{background:var(--white);border-top:1px solid var(--g1)}
+.tgrid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1.25rem;margin-top:3rem;
+}
+.tmcard{
+  background:var(--white);border:1px solid var(--g1);
+  border-radius:var(--rad);padding:1.5rem 1.5rem 2rem;
+  box-shadow:var(--sh);transition:all .25s;
+  display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+}
+.tmcard:hover{box-shadow:var(--sh2);border-color:var(--blue-m)}
+@media(hover:hover){.tmcard:hover{transform:translateY(-3px)}}
+.tmcard.ph{
+  opacity:.5;border-style:dashed;
+  min-height:auto;
+}
+/* Photo placeholder */
+.mphoto{
+  width:100%;height:200px;border-radius:8px;
+  background:var(--off2);border:1px solid var(--g1);
+  margin:0 0 1.25rem;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.mphoto img{width:100%;height:100%;object-fit:cover;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.mphoto-ph{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.mphoto-ph svg{opacity:.28}
+.mname{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:1.2rem;color:var(--navy);
+  letter-spacing:.01em;margin-bottom:.75rem;
+}
+.mname.dim{color:var(--g2)}
+.mlocation{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.72rem;font-weight:600;color:var(--g3);
+  margin-bottom:1rem;letter-spacing:.02em;
+}
+.mlocation::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--blue);flex-shrink:0;
+}
+.mtag-group{margin-bottom:.6rem}
+.mtag-group-label{
+  font-size:.58rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--g2);margin-bottom:.35rem;
+}
+.mtags{display:flex;flex-wrap:wrap;gap:.4rem}
+.mtag{font-size:.64rem;font-weight:600;padding:.22rem .65rem;border-radius:4px;background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-m)}
+.mtag.geo{background:var(--off2);color:var(--g3);border-color:var(--g1)}
+
+/* ── WHY ── */
+#why{background:var(--off);border-top:1px solid var(--g1);border-bottom:1px solid var(--g1)}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.wcard{
+  background:var(--white);border:1px solid var(--g1);
+  border-radius:var(--rad);padding:2.75rem 2.25rem;
+  box-shadow:var(--sh);transition:all .25s;cursor:default;
+}
+.wcard:hover{box-shadow:var(--sh2);border-color:var(--blue-m)}
+@media(hover:hover){.wcard:hover{transform:translateY(-4px)}}
+.wno{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:4rem;font-weight:900;line-height:1;
+  color:var(--g1);margin-bottom:1.5rem;transition:color .25s;
+}
+.wcard:hover .wno{color:var(--blue-m)}
+.wtitle{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:1.2rem;
+  color:var(--navy);margin-bottom:.75rem;letter-spacing:.01em;
+}
+.wbody{font-size:.84rem;color:var(--g3);line-height:1.78;font-weight:300;margin-bottom:1.5rem}
+.wfoot{padding-top:1.25rem;border-top:1px solid var(--g1);font-size:.75rem;color:var(--g3);line-height:1.6}
+.wfoot strong{display:block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
+
+/* ── CONTACT ── */
+#contact{background:var(--navy)}
+.clayout{
+  max-width:680px;margin:0 auto;
+  text-align:center;
+}
+.csub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.82;font-weight:300;margin:1.25rem auto 3rem;max-width:520px}
+.ceml-lbl{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.75rem}
+.ceml-val{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:2.4rem;letter-spacing:.02em;
+  color:white;text-decoration:none;display:inline-block;
+  border-bottom:3px solid rgba(147,197,253,.5);padding-bottom:3px;
+  transition:color .2s,border-color .2s;
+}
+.ceml-val:hover{color:#93C5FD;border-color:#93C5FD}
+
+/* ── CONTACT ── */
+#contact{
+  position:relative;overflow:hidden;
+}
+.contact-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80');
+  background-size:cover;background-position:center;
+}
+.contact-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(11,20,55,.92) 0%,rgba(27,47,110,.85) 100%);
+}
+footer{
+  background:#0F1A42;padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.flogo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.06em;color:white;display:flex;align-items:center;gap:7px}
+.flogo-dot{width:8px;height:8px;border-radius:50%;background:#93C5FD}
+.fnote{font-size:.72rem;color:rgba(255,255,255,.25);letter-spacing:.03em}
+
+/* Touch & tap improvements */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+/* Prevent text selection on interactive elements */
+.sw, .ebadge, .scard, .mcard, .tmcard, .wcard {
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* Safe area insets for notched phones */
+#nav {
+  padding-left: max(3rem, env(safe-area-inset-left));
+  padding-right: max(3rem, env(safe-area-inset-right));
+}
+footer {
+  padding-bottom: max(1.75rem, env(safe-area-inset-bottom));
+}
+/* Fix wrap and hinner for iOS safe area */
+.wrap {
+  padding-left: max(3rem, env(safe-area-inset-left));
+  padding-right: max(3rem, env(safe-area-inset-right));
+}
+.hinner {
+  padding-left: max(3rem, env(safe-area-inset-left));
+  padding-right: max(3rem, env(safe-area-inset-right));
+}
+#spy {
+  right: max(1.6rem, env(safe-area-inset-right));
+}
+@media(max-width:1024px){
+  .wrap{padding:0 2rem}
+  .hinner{padding:3rem 2rem}
+  .hh1{font-size:clamp(3rem,8vw,6rem)}
+  .hbar{grid-template-columns:1fr;gap:2.5rem}
+  .hside{align-items:flex-start}
+  .exp-grid{grid-template-columns:repeat(2,1fr)}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .mgrid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .wgrid{grid-template-columns:1fr}
+  .egroup{grid-template-columns:160px 1fr}
+  #spy{display:none}
+  .shead{flex-direction:column;gap:.75rem}
+}
+@media(max-width:640px){
+  :root{--nh:56px}
+  #nav{
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+  .nlinks,.ncta{display:none}
+  .ham{display:flex}
+  .wrap{
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+  .hinner{
+    padding: 2rem max(1.25rem, env(safe-area-inset-right)) 5rem max(1.25rem, env(safe-area-inset-left));
+  }
+  .hero-city-label{left:1.25rem;bottom:2rem;gap:1rem}
+  .hh1{font-size:2.8rem}
+  .hsub{font-size:1.15rem}
+  .sec{padding:4.5rem 0}
+  .sgrid{grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .egroup{grid-template-columns:1fr;gap:.5rem}
+  .egroup-label{font-size:.65rem;padding-bottom:.5rem;margin-bottom:.65rem}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#hero">EONE</a>
+  <ul class="nlinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#why">Why Us</a></li>
+  </ul>
+  <button class="ncta" onclick="location.href='#contact'">Get in Touch</button>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div id="mob">
+  <a href="#services"   onclick="document.getElementById('mob').classList.remove('open')">Services</a>
+  <a href="#experience" onclick="document.getElementById('mob').classList.remove('open')">Experience</a>
+  <a href="#team"       onclick="document.getElementById('mob').classList.remove('open')">Team</a>
+  <a href="#why"        onclick="document.getElementById('mob').classList.remove('open')">Why Us</a>
+  <a href="#contact"    onclick="document.getElementById('mob').classList.remove('open')">Contact</a>
+</div>
+
+<!-- SPY -->
+<div id="spy">
+  <div class="sw on" data-t="hero">      <span class="stip">Home</span>       <span class="sd"></span></div>
+  <div class="sw"    data-t="services">  <span class="stip">Services</span>   <span class="sd"></span></div>
+  <div class="sw"    data-t="experience"><span class="stip">Experience</span> <span class="sd"></span></div>
+  <div class="sw"    data-t="team">      <span class="stip">Team</span>       <span class="sd"></span></div>
+  <div class="sw"    data-t="why">       <span class="stip">Why Us</span>     <span class="sd"></span></div>
+  <div class="sw"    data-t="contact">   <span class="stip">Contact</span>    <span class="sd"></span></div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=1200&auto=format&q=75&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&auto=format&q=75&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1470004914212-05527e49370b?w=1200&auto=format&q=75&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1609825488888-3a766db05542?w=1200&auto=format&q=75&fit=crop')"></div>
+  </div>
+  <div class="hero-city-label">
+    <span class="city-name active" data-city="0">Shanghai</span>
+    <span class="city-name" data-city="1">Beijing</span>
+    <span class="city-name" data-city="2">Taipei</span>
+    <span class="city-name" data-city="3">Vancouver</span>
+  </div>
+  <div class="hero-progress"><div class="hero-progress-bar" id="hpb"></div></div>
+  <div class="hinner">
+    <h1 class="hh1 rv">We Open Asia.<em>You Scale.</em></h1>
+    <div class="hbar rv">
+      <p class="hsub">EONE enters Greater China as your team on the ground —<em> We close first deals, build channel partnerships, and establish the presence that matters.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="sec">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <div class="eyebrow lt">Our Services</div>
+        <h2 class="h2 lt">Full Cycle. <span>No Handoffs.</span></h2>
+      </div>
+      <p class="sub lt">From the first market snapshot to your first signed deal. We run the full cycle so you don't have to.</p>
+    </div>
+    <div class="sgrid">
+      <div class="scard shim shim-dk rv"><div class="snum">01</div><div class="stitle">Market Landscape Analysis</div><p class="sbody">Market size, key players, buyer behavior, regulatory environment, and emerging trends. Clarity over volume.</p></div>
+      <div class="scard shim shim-dk rv"><div class="snum">02</div><div class="stitle">Competitive Intelligence</div><p class="sbody">Mapping local incumbents, international entrants, pricing dynamics, and white space. Where you can win — and where you cannot.</p></div>
+      <div class="scard shim shim-dk rv"><div class="snum">03</div><div class="stitle">Market Entry Strategy</div><p class="sbody">Tailored roadmap: market prioritization, GTM model, partnership structure, pricing, and phased execution plan.</p></div>
+      <div class="scard shim shim-dk rv"><div class="snum">04</div><div class="stitle">Lead Generation &amp; Deal Closure</div><p class="sbody">Full sales cycle — qualifying prospects, managing relationships, closing agreements, and onboarding channel partners.</p></div>
+      <div class="scard shim shim-dk rv"><div class="snum">05</div><div class="stitle">Supply Chain Optimization</div><p class="sbody">Identify reliable local suppliers, manage qualification, and build alternative supply chains from Greater China.</p></div>
+      <div class="scard shim shim-dk rv"><div class="snum">06</div><div class="stitle">Strategic Investment Access</div><p class="sbody">Connect with the right capital in Greater China — industrial funds, corporate venture arms aligned with your sector and growth stage.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience" class="sec">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <div class="eyebrow lt">Our Experience</div>
+        <h2 class="h2 lt">Broad Reach. <span>Real Experience.</span></h2>
+      </div>
+      <p class="sub lt">From semiconductor fabs to clean energy projects — our team brings hands-on experience across the industries we serve.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Semiconductors &amp; Deep Tech</div></div>
+      </div>
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Automotive &amp; Mobility</div></div>
+      </div>
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Connectivity &amp; IoT</div></div>
+      </div>
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Clean Energy &amp; Materials</div></div>
+      </div>
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Software &amp; Testing</div></div>
+      </div>
+      <div class="exp-card rv">
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"></div>
+        <div class="exp-card-overlay"></div>
+        <div class="exp-card-content"><div class="exp-card-title">Consumer &amp; Government</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section id="team" class="sec">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <div class="eyebrow">Our Team</div>
+        <h2 class="h2">Lean Team. <span>Deep Roots.</span></h2>
+      </div>
+      <p class="sub">Each member brings a distinct geography and sector expertise. We represent you — not ourselves.</p>
+    </div>
+    <div class="tgrid">
+
+      <!-- Glen Wu -->
+      <div class="tmcard shim rv">
+        <div class="mphoto">
+          <div class="mphoto-ph">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="24" r="12" fill="#A8AECA"/>
+              <path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A8AECA"/>
+            </svg>
+          </div>
+        </div>
+        <div class="mname">Glen Wu</div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Markets</div>
+          <div class="mtags">
+            <span class="mtag geo">North America</span>
+            <span class="mtag geo">Europe</span>
+          </div>
+        </div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Sectors</div>
+          <div class="mtags">
+            <span class="mtag">Semiconductor</span>
+            <span class="mtag">Electronics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Michael Pan -->
+      <div class="tmcard shim rv">
+        <div class="mphoto">
+          <div class="mphoto-ph">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="24" r="12" fill="#A8AECA"/>
+              <path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A8AECA"/>
+            </svg>
+          </div>
+        </div>
+        <div class="mname">Michael Pan</div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Markets</div>
+          <div class="mtags">
+            <span class="mtag geo">Taiwan</span>
+            <span class="mtag geo">SEA</span>
+          </div>
+        </div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Sectors</div>
+          <div class="mtags">
+            <span class="mtag">Clean Tech</span>
+            <span class="mtag">Connectivity</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nell Ren -->
+      <div class="tmcard shim rv">
+        <div class="mphoto">
+          <div class="mphoto-ph">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="24" r="12" fill="#A8AECA"/>
+              <path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A8AECA"/>
+            </svg>
+          </div>
+        </div>
+        <div class="mname">Nell Ren</div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Markets</div>
+          <div class="mtags">
+            <span class="mtag geo">China</span>
+          </div>
+        </div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Sectors</div>
+          <div class="mtags">
+            <span class="mtag">FMCG</span>
+            <span class="mtag">Government</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Justin Liu -->
+      <div class="tmcard shim rv">
+        <div class="mphoto">
+          <div class="mphoto-ph">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="24" r="12" fill="#A8AECA"/>
+              <path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A8AECA"/>
+            </svg>
+          </div>
+        </div>
+        <div class="mname">Justin Liu</div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Markets</div>
+          <div class="mtags">
+            <span class="mtag geo">China</span>
+          </div>
+        </div>
+        <div class="mtag-group">
+          <div class="mtag-group-label">Sectors</div>
+          <div class="mtags">
+            <span class="mtag">Semiconductor</span>
+            <span class="mtag">MedTech</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY ═══ -->
+<section id="why" class="sec">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <div class="eyebrow">Why EONE</div>
+        <h2 class="h2">Three Things That <span>Actually Matter</span></h2>
+      </div>
+      <p class="sub">We operate like your employee, not your consultant. Here is what that looks like in practice.</p>
+    </div>
+    <div class="wgrid">
+      <div class="wcard shim rv">
+        <div class="wno">01</div>
+        <div class="wtitle">We Carry Your Card, Not Ours</div>
+        <p class="wbody">When we walk into a meeting, we carry your business card and introduce ourselves as part of your team. Every conversation happens as if you were there yourself — because as far as your partners are concerned, we are you.</p>
+        <div class="wfoot"><strong>What This Means</strong>Your partners and clients experience you — seamless, credible, fully in-house.</div>
+      </div>
+      <div class="wcard shim rv">
+        <div class="wno">02</div>
+        <div class="wtitle">Industry Veterans, Not Generalists</div>
+        <p class="wbody">We come from the industries we serve. Engineering backgrounds, hands-on commercial experience, no time wasted getting up to speed.</p>
+        <div class="wfoot"><strong>Relevant Sectors</strong>Semiconductors · Clean Energy · Advanced Manufacturing · EV · Deep Tech</div>
+      </div>
+      <div class="wcard shim rv">
+        <div class="wno">03</div>
+        <div class="wtitle">We Already Know the Room</div>
+        <p class="wbody">We speak the language — literally and culturally. Business in Greater China runs on relationships, context, and trust built over time. We bring all three.</p>
+        <div class="wfoot"><strong>Languages</strong>Mandarin · English</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="sec">
+  <div class="contact-bg"></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="clayout rv">
+      <div class="eyebrow lt" style="justify-content:center">Get in Touch</div>
+      <h2 class="h2 lt" style="font-size:clamp(2.2rem,4vw,3.5rem);margin-bottom:.5rem">Start a <span>Conversation</span></h2>
+      <p class="csub">Hiring a local team in East Asia takes months and carries real risk. Engaging EONE takes a conversation. Tell us your market, your product, and your timeline — we'll tell you what it takes to win.</p>
+      <div class="ceml-lbl">Email us directly</div>
+      <a href="/cdn-cgi/l/email-protection#9ef6fbf2f2f1defbb3f1f0fbb0fdf1f3" class="ceml-val"><span class="__cf_email__" data-cfemail="442c2128282b0421692b2a216a272b29">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">EONE</div>
+  <div class="fnote">© 2025 EONE · Employer Number One</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── HERO SLIDESHOW ──
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  const labels = document.querySelectorAll('.city-name');
+  const bar    = document.getElementById('hpb');
+  const DURATION = 5000;
+  let current = 0, timer, barTimer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    labels[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    labels[current].classList.add('active');
+    // reset progress bar
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.transition = `width ${DURATION}ms linear`;
+        bar.style.width = '100%';
+      });
+    });
+  }
+
+  function start() {
+    goTo(0);
+    timer = setInterval(() => goTo(current + 1), DURATION);
+  }
+
+  // Click city labels to jump
+  labels.forEach((lbl, i) => {
+    lbl.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      timer = setInterval(() => goTo(current + 1), DURATION);
+    });
+  });
+
+  start();
+})();
+const cur = document.getElementById('cur');
+const hasFineMouse = window.matchMedia('(pointer:fine)').matches;
+
+if (hasFineMouse) {
+  let mx=0, my=0, cx=0, cy=0, started=false;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    if (!started) {
+      // First move — snap to position instantly, then fade in
+      cx = mx; cy = my;
+      cur.style.left = cx + 'px';
+      cur.style.top  = cy + 'px';
+      cur.classList.add('active');
+      started = true;
+    }
+  }, { passive: true });
+
+  // Hide when mouse leaves window
+  document.addEventListener('mouseleave', () => cur.classList.remove('active'));
+  document.addEventListener('mouseenter', () => { if(started) cur.classList.add('active'); });
+
+  (function loop() {
+    cx += (mx - cx) * 0.18;
+    cy += (my - cy) * 0.18;
+    cur.style.left = cx + 'px';
+    cur.style.top  = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a,button,.scard,.mcard,.tmcard,.wcard,.ebadge,.sw').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+} else {
+  // Touch device — ensure system cursor works normally
+  cur.style.display = 'none';
+  document.body.style.cursor = 'auto';
+}
+
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scr',scrollY>10);},{passive:true});
+document.getElementById('ham').addEventListener('click',()=>{document.getElementById('mob').classList.toggle('open');});
+
+// Close mobile menu on outside tap
+document.addEventListener('click', e => {
+  const mob = document.getElementById('mob');
+  const ham = document.getElementById('ham');
+  if (mob.classList.contains('open') && !mob.contains(e.target) && !ham.contains(e.target)) {
+    mob.classList.remove('open');
+  }
+}, { passive: true });
+
+// Smooth scroll for all platforms including iOS
+const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nh')) || 64;
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - navH;
+    try {
+      window.scrollTo({ top, behavior: 'smooth' });
+    } catch(err) {
+      window.scrollTo(0, top); // Fallback for older browsers
+    }
+  });
+});
+
+const SECS=['hero','services','experience','team','why','contact'];
+const DARK=['services','experience','contact'];
+const sws=document.querySelectorAll('.sw');
+const nls=document.querySelectorAll('.nlinks a');
+const spy=document.getElementById('spy');
+function updateSpy(){
+  const mid=scrollY+innerHeight*.42;
+  let active='hero';
+  SECS.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=mid)active=id;});
+  sws.forEach(w=>w.classList.toggle('on',w.dataset.t===active));
+  spy.classList.toggle('dk',DARK.includes(active));
+  nls.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+active));
+}
+window.addEventListener('scroll',updateSpy,{passive:true});
+updateSpy();
+sws.forEach(w=>w.addEventListener('click',()=>{document.getElementById(w.dataset.t)?.scrollIntoView({behavior:'smooth'});}));
+
+// ── REVEAL ──
+const revealEls = document.querySelectorAll('.rv');
+const fallback = setTimeout(() => {
+  revealEls.forEach(el => el.classList.add('in'));
+}, 600);
+
+if ('IntersectionObserver' in window) {
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      clearTimeout(fallback);
+      const sibs = [...(e.target.parentElement?.children || [])].filter(c => c.classList.contains('rv'));
+      const idx = sibs.indexOf(e.target);
+      e.target.style.animationDelay = (idx * 70) + 'ms';
+      e.target.classList.add('in');
+      ro.unobserve(e.target);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+  revealEls.forEach(el => ro.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in'));
+}
+</script>
+</body>
+</html>
