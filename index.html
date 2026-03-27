@@ -9,7 +9,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#1B2F6E" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1B3D" media="(prefers-color-scheme: dark)">
-<title>EONE — We Open Asia.</title>
+<title>EONE — We Open Asia, You Scale.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap&font-display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://images.unsplash.com">
@@ -133,7 +133,7 @@ body{
 }
 .nlinks{display:flex;gap:2rem;list-style:none;align-items:center}
 .nlinks a{
-  font-size:.78rem;font-weight:600;color:var(--g3);
+  font-size:.88rem;font-weight:700;color:var(--g3);
   text-decoration:none;letter-spacing:.03em;
   transition:color .2s;
 }
@@ -229,16 +229,16 @@ body{
   content:'';position:absolute;inset:0;
   background:linear-gradient(
     to bottom,
-    rgba(17,24,39,.6) 0%,
-    rgba(17,24,39,.4) 50%,
-    rgba(17,24,39,.65) 100%
+    rgba(17,24,39,.35) 0%,
+    rgba(17,24,39,.2) 50%,
+    rgba(17,24,39,.5) 100%
   );
 }
 .hero-city-label{
   position:absolute;bottom:2.5rem;left:3rem;z-index:10;
   display:flex;align-items:center;gap:1.5rem;
 }
-.hero-progress{display:none}
+.hero-progress{display:block}
 .city-name{
   font-family:'Barlow Condensed',sans-serif;
   font-size:.78rem;font-weight:700;letter-spacing:.18em;
@@ -267,8 +267,8 @@ body{
   margin-bottom:2.75rem;
 }
 .hh1 em{
-  font-style:normal;display:block;
-  color:rgba(255,255,255,.7);
+  font-style:italic;display:block;
+  color:#93C5FD;
 }
 .hbar{
   display:block;
@@ -344,7 +344,7 @@ body{
 .mnote{font-size:.84rem;color:var(--g3);font-weight:300;line-height:1.65}
 
 /* ── EXPERIENCE ── */
-#experience{background:var(--navy)}
+#experience{background:var(--navy);border-top:1px solid rgba(255,255,255,.1)}
 .exp-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -497,7 +497,7 @@ body{
 }
 .contact-bg{
   position:absolute;inset:0;z-index:0;
-  background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80');
+  background-image:url('https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=1600&q=80');
   background-size:cover;background-position:center;
 }
 .contact-bg::after{
@@ -543,6 +543,7 @@ footer {
 #spy {
   right: max(1.6rem, env(safe-area-inset-right));
 }
+/* ── TABLET LANDSCAPE & SMALL DESKTOP (1024px) ── */
 @media(max-width:1024px){
   .wrap{padding:0 2rem}
   .hinner{padding:3rem 2rem}
@@ -553,11 +554,36 @@ footer {
   .sgrid{grid-template-columns:repeat(2,1fr)}
   .mgrid{grid-template-columns:1fr}
   .tgrid{grid-template-columns:repeat(2,1fr)}
-  .wgrid{grid-template-columns:1fr}
+  .wgrid{grid-template-columns:repeat(2,1fr)}
   .egroup{grid-template-columns:160px 1fr}
   #spy{display:none}
   .shead{flex-direction:column;gap:.75rem}
+  .nlinks a{font-size:.82rem}
 }
+
+/* ── TABLET PORTRAIT — iPad, Android tablet (768px) ── */
+@media(max-width:768px){
+  :root{--nh:60px}
+  .wrap{padding:0 1.75rem}
+  .hinner{padding:2.5rem 1.75rem 4rem}
+  .hh1{font-size:clamp(2.8rem,9vw,5rem)}
+  .hsub{font-size:1.1rem}
+  .sgrid{grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .wgrid{grid-template-columns:1fr}
+  .sec{padding:5rem 0}
+  .scard{padding:2rem 1.75rem}
+  .wcard{padding:2.25rem 1.75rem}
+  .mcard{padding:1.75rem 2rem}
+  .tmcard{padding:1.25rem 1.25rem 1.75rem}
+  .nlinks,.ncta{display:none}
+  .ham{display:flex}
+  #spy{display:none}
+  footer{padding:1.5rem 1.75rem}
+}
+
+/* ── MOBILE (640px) ── */
 @media(max-width:640px){
   :root{--nh:56px}
   #nav{
@@ -573,16 +599,76 @@ footer {
   .hinner{
     padding: 2rem max(1.25rem, env(safe-area-inset-right)) 5rem max(1.25rem, env(safe-area-inset-left));
   }
-  .hero-city-label{left:1.25rem;bottom:2rem;gap:1rem}
-  .hh1{font-size:2.8rem}
-  .hsub{font-size:1.15rem}
-  .sec{padding:4.5rem 0}
+  .hero-city-label{left:1.25rem;bottom:2rem;gap:.75rem}
+  .city-name{font-size:.7rem;letter-spacing:.12em}
+  .hh1{font-size:2.8rem;margin-bottom:2rem}
+  .hsub{font-size:1.05rem;line-height:1.4}
+  .sec{padding:4rem 0}
   .sgrid{grid-template-columns:1fr}
   .exp-grid{grid-template-columns:1fr}
   .tgrid{grid-template-columns:1fr}
+  .wgrid{grid-template-columns:1fr}
   .egroup{grid-template-columns:1fr;gap:.5rem}
   .egroup-label{font-size:.65rem;padding-bottom:.5rem;margin-bottom:.65rem}
-  footer{flex-direction:column;gap:.5rem;text-align:center}
+  .scard{padding:1.75rem 1.5rem}
+  .wcard{padding:2rem 1.5rem}
+  .exp-card{height:180px}
+  .shead{flex-direction:column;gap:.6rem;margin-bottom:2rem}
+  .h2{font-size:clamp(1.8rem,7vw,2.5rem)}
+  footer{
+    flex-direction:column;gap:.5rem;text-align:center;
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+  .ceml-val{font-size:1.75rem}
+  .csub{font-size:.9rem}
+}
+
+/* ── SMALL MOBILE (390px — iPhone 14/15) ── */
+@media(max-width:390px){
+  .hh1{font-size:2.4rem}
+  .hsub{font-size:1rem}
+  .h2{font-size:1.75rem}
+  .scard,.wcard{padding:1.5rem 1.25rem}
+  .tmcard{padding:1rem 1rem 1.5rem}
+  .mphoto{height:160px}
+  .ceml-val{font-size:1.5rem}
+}
+
+/* ── VERY SMALL (320px — older iPhones, small Android) ── */
+@media(max-width:320px){
+  .hh1{font-size:2rem}
+  .hsub{font-size:.95rem}
+  .wrap{padding-left:1rem;padding-right:1rem}
+  .hinner{padding-left:1rem;padding-right:1rem}
+  .hero-city-label{gap:.5rem}
+  .city-name{font-size:.62rem}
+}
+
+/* ── iOS SAFARI SPECIFIC FIXES ── */
+@supports (-webkit-touch-callout: none){
+  #hero{min-height:-webkit-fill-available}
+  .hinner{padding-bottom:6rem} /* extra room above city labels */
+}
+
+/* ── WINDOWS HIGH-DPI (125%/150% scaling) ── */
+@media(-webkit-min-device-pixel-ratio:1.25),(min-resolution:120dpi){
+  .nlinks a{letter-spacing:.02em}
+  .eyebrow{letter-spacing:.08em}
+}
+
+/* ── FIREFOX (Windows/Linux) — no backdrop-filter ── */
+@-moz-document url-prefix(){
+  #nav{background:rgba(255,255,255,.99)}
+  #mob{background:rgba(255,255,255,.99)}
+}
+
+/* ── PRINT ── */
+@media print{
+  #nav,#spy,#cur,#mob,#ham,.ham{display:none!important}
+  .sec{padding:2rem 0;break-inside:avoid}
+  #hero{min-height:auto;padding:3rem 0}
+  .hero-slides,.contact-bg{display:none}
+  body{color:#000}
 }
 </style>
 </head>
@@ -594,19 +680,19 @@ footer {
 <nav id="nav">
   <a class="logo" href="#hero">EONE</a>
   <ul class="nlinks">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#why">Why Us</a></li>
+    <li><a href="#services">Our Services</a></li>
+    <li><a href="#experience">Our Experience</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#why">Why EONE</a></li>
   </ul>
   <button class="ncta" onclick="location.href='#contact'">Get in Touch</button>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
 <div id="mob">
-  <a href="#services"   onclick="document.getElementById('mob').classList.remove('open')">Services</a>
-  <a href="#experience" onclick="document.getElementById('mob').classList.remove('open')">Experience</a>
-  <a href="#team"       onclick="document.getElementById('mob').classList.remove('open')">Team</a>
-  <a href="#why"        onclick="document.getElementById('mob').classList.remove('open')">Why Us</a>
+  <a href="#services"   onclick="document.getElementById('mob').classList.remove('open')">Our Services</a>
+  <a href="#experience" onclick="document.getElementById('mob').classList.remove('open')">Our Experience</a>
+  <a href="#team"       onclick="document.getElementById('mob').classList.remove('open')">Our Team</a>
+  <a href="#why"        onclick="document.getElementById('mob').classList.remove('open')">Why EONE</a>
   <a href="#contact"    onclick="document.getElementById('mob').classList.remove('open')">Contact</a>
 </div>
 
@@ -623,7 +709,7 @@ footer {
 <!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1609825488888-3a766db05542?w=1200&auto=format&q=75&fit=crop')"></div>
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1730661906876-18bfc6e95f2f?q=80&w=2069&auto=format&fit=crop')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=1200&auto=format&q=75&fit=crop')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&auto=format&q=75&fit=crop')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1470004914212-05527e49370b?w=1200&auto=format&q=75&fit=crop')"></div>
@@ -882,7 +968,7 @@ footer {
 
 <footer>
   <div class="flogo">EONE</div>
-  <div class="fnote">© 2025 EONE · Employer Number One</div>
+  <div class="fnote">© 2025 EONE · We Open Asia, You Scale.</div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
