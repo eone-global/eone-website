@@ -415,13 +415,13 @@ body{
 }
 /* Photo placeholder */
 .mphoto{
-  width:100%;height:200px;border-radius:8px;
+  width:100%;height:300px;border-radius:8px;
   background:var(--off2);border:1px solid var(--g1);
   margin:0 0 1.25rem;
   overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:flex-start;justify-content:center;
 }
-.mphoto img{width:100%;height:100%;object-fit:cover;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.mphoto img{width:100%;height:100%;object-fit:cover;object-position:top center;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
 .mphoto-ph{
   display:flex;flex-direction:column;align-items:center;gap:6px;
 }
@@ -764,7 +764,7 @@ footer {
   <div class="wrap">
     <div class="shead rv">
       <div>
-        <div class="eyebrow">Experience</div>
+        <div class="eyebrow">Our Experience</div>
         <h2 class="h2">Broad Reach. <span>Real Experience.</span></h2>
       </div>
       <p class="sub">From semiconductor fabs to clean energy projects — our team brings hands-on experience across the industries we serve.</p>
@@ -941,7 +941,7 @@ footer {
       </div>
       <div class="contact-right">
         <div class="ceml-lbl">Email us directly</div>
-        <a href="mailto:glen.wu@eoneglobal.ca" class="ceml-val">glen.wu@eoneglobal.ca</a>
+        <a href="mailto:contact@eoneglobal.ca" class="ceml-val">contact@eoneglobal.ca</a>
         <div class="ctz-stack">
           <div class="ctz-item">
             <span class="ctz-dot"></span>
@@ -1116,10 +1116,8 @@ if ('IntersectionObserver' in window) {
       e.target.classList.add('in');
       ro.unobserve(e.target);
     });
-  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+  }, { threshold: 0.15 });
   revealEls.forEach(el => ro.observe(el));
-} else {
-  revealEls.forEach(el => el.classList.add('in'));
 }
 </script>
 </body>
