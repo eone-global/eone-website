@@ -251,7 +251,7 @@ body{
   height:2px;background:rgba(255,255,255,.12);
 }
 .hero-progress-bar{
-  height:100%;background:white;width:0%;
+  height:100%;background:var(--blue);width:0%;
   transition:width linear;
 }
 .hinner{
@@ -291,31 +291,32 @@ body{
 }
 
 /* ── SERVICES ── */
-#services{background:var(--navy)}
+#services{background:var(--off);border-top:1px solid var(--g1);border-bottom:1px solid var(--g1)}
 .sgrid{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:1.25rem;margin-top:3rem;
 }
 .scard{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
+  background:var(--white);
+  border:1px solid var(--g1);
   border-radius:var(--rad);padding:2.5rem 2.25rem;
+  box-shadow:var(--sh);
   transition:all .25s;cursor:default;
 }
-.scard:hover{background:rgba(255,255,255,.09);border-color:rgba(147,197,253,.4);transform:translateY(-3px)}
+.scard:hover{box-shadow:var(--sh2);border-color:var(--blue-m);transform:translateY(-3px)}
 .snum{
   font-family:'Barlow Condensed',sans-serif;
   font-size:3.5rem;font-weight:900;line-height:1;
-  color:rgba(255,255,255,.07);margin-bottom:1.5rem;
+  color:var(--g1);margin-bottom:1.5rem;
   transition:color .25s;
 }
-.scard:hover .snum{color:rgba(147,197,253,.2)}
+.scard:hover .snum{color:var(--blue-m)}
 .stitle{
   font-family:'Barlow Condensed',sans-serif;
   font-size:1.2rem;font-weight:800;
-  color:white;margin-bottom:.65rem;letter-spacing:.01em;
+  color:var(--navy);margin-bottom:.65rem;letter-spacing:.01em;
 }
-.sbody{font-size:.84rem;color:rgba(255,255,255,.48);line-height:1.75;font-weight:300}
+.sbody{font-size:.84rem;color:var(--g3);line-height:1.75;font-weight:300}
 
 /* ── MARKETS ── */
 #markets{background:var(--off);border-top:1px solid var(--g1);border-bottom:1px solid var(--g1)}
@@ -344,10 +345,10 @@ body{
 .mnote{font-size:.84rem;color:var(--g3);font-weight:300;line-height:1.65}
 
 /* ── EXPERIENCE ── */
-#experience{background:var(--navy);border-top:1px solid rgba(255,255,255,.1)}
+#experience{background:var(--white);border-top:1px solid var(--g1)}
 .exp-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:1.25rem;
   margin-top:3rem;
 }
@@ -450,68 +451,75 @@ body{
 .mtag.geo{background:var(--off2);color:var(--g3);border-color:var(--g1)}
 
 /* ── WHY ── */
-#why{background:var(--off);border-top:1px solid var(--g1);border-bottom:1px solid var(--g1)}
+#why{background:var(--navy);border-top:1px solid rgba(255,255,255,.1)}
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 .wcard{
-  background:var(--white);border:1px solid var(--g1);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
   border-radius:var(--rad);padding:2.75rem 2.25rem;
-  box-shadow:var(--sh);transition:all .25s;cursor:default;
+  transition:all .25s;cursor:default;
 }
-.wcard:hover{box-shadow:var(--sh2);border-color:var(--blue-m)}
+.wcard:hover{background:rgba(255,255,255,.09);border-color:rgba(147,197,253,.4)}
 @media(hover:hover){.wcard:hover{transform:translateY(-4px)}}
 .wno{
   font-family:'Barlow Condensed',sans-serif;
   font-size:4rem;font-weight:900;line-height:1;
-  color:var(--g1);margin-bottom:1.5rem;transition:color .25s;
+  color:rgba(255,255,255,.07);margin-bottom:1.5rem;transition:color .25s;
 }
-.wcard:hover .wno{color:var(--blue-m)}
+.wcard:hover .wno{color:rgba(147,197,253,.2)}
 .wtitle{
   font-family:'Barlow Condensed',sans-serif;
   font-weight:800;font-size:1.2rem;
-  color:var(--navy);margin-bottom:.75rem;letter-spacing:.01em;
+  color:white;margin-bottom:.75rem;letter-spacing:.01em;
 }
-.wbody{font-size:.84rem;color:var(--g3);line-height:1.78;font-weight:300;margin-bottom:1.5rem}
-.wfoot{padding-top:1.25rem;border-top:1px solid var(--g1);font-size:.75rem;color:var(--g3);line-height:1.6}
-.wfoot strong{display:block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
+.wbody{font-size:.84rem;color:rgba(255,255,255,.48);line-height:1.78;font-weight:300;margin-bottom:1.5rem}
+.wfoot{padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6}
+.wfoot strong{display:block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#93C5FD;margin-bottom:.3rem}
 
 /* ── CONTACT ── */
-#contact{background:var(--navy)}
-.clayout{
-  max-width:680px;margin:0 auto;
-  text-align:center;
-}
-.csub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.82;font-weight:300;margin:1.25rem auto 3rem;max-width:520px}
-.ceml-lbl{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.75rem}
-.ceml-val{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;font-size:2.4rem;letter-spacing:.02em;
-  color:white;text-decoration:none;display:inline-block;
-  border-bottom:3px solid rgba(147,197,253,.5);padding-bottom:3px;
-  transition:color .2s,border-color .2s;
-}
-.ceml-val:hover{color:#93C5FD;border-color:#93C5FD}
-
-/* ── CONTACT ── */
-#contact{
-  position:relative;overflow:hidden;
-}
+#contact{background:var(--off);border-top:1px solid var(--g1);position:relative;overflow:hidden}
 .contact-bg{
   position:absolute;inset:0;z-index:0;
   background-image:url('https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=1600&q=80');
   background-size:cover;background-position:center;
+  opacity:.06;
 }
-.contact-bg::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(11,20,55,.92) 0%,rgba(27,47,110,.85) 100%);
+.contact-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
 }
+.contact-desc{font-size:.95rem;color:var(--g3);line-height:1.82;font-weight:300;max-width:440px}
+.contact-right{
+  background:var(--white);border:1px solid var(--g1);
+  border-radius:var(--rad);padding:2.5rem;
+  box-shadow:var(--sh);
+}
+.ceml-lbl{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g2);margin-bottom:.75rem}
+.ceml-val{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:1.8rem;letter-spacing:.02em;
+  color:var(--navy);text-decoration:none;display:inline-block;
+  border-bottom:3px solid var(--blue-m);padding-bottom:3px;
+  transition:color .2s,border-color .2s;
+}
+.ceml-val:hover{color:var(--blue);border-color:var(--blue)}
+.ctz-stack{display:flex;flex-direction:column;gap:.75rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--g1)}
+.ctz-item{display:flex;align-items:center;gap:.5rem}
+.ctz-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.ctz-city{font-size:.82rem;font-weight:600;color:var(--navy);letter-spacing:.02em}
+.ctz-zone{font-size:.75rem;font-weight:400;color:var(--g3)}
+
+/* ── FOOTER ── */
 footer{
-  background:#0F1A42;padding:2rem 3rem;
+  background:var(--off);padding:2.5rem 3rem 2rem;
   display:flex;align-items:center;justify-content:space-between;
-  border-top:1px solid rgba(255,255,255,.06);
+  border-top:1px solid var(--g1);
 }
-.flogo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.06em;color:white;display:flex;align-items:center;gap:7px}
+.flogo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;letter-spacing:.06em;color:var(--navy);display:flex;align-items:center;gap:7px}
 .flogo-dot{width:8px;height:8px;border-radius:50%;background:#93C5FD}
-.fnote{font-size:.72rem;color:rgba(255,255,255,.25);letter-spacing:.03em}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{font-size:.75rem;font-weight:600;color:var(--g3);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.flinks a:hover{color:var(--navy)}
+.fnote{font-size:.72rem;color:var(--g2);letter-spacing:.03em}
 
 /* Touch & tap improvements */
 a, button {
@@ -551,7 +559,7 @@ footer {
   .hbar{grid-template-columns:1fr;gap:2.5rem}
   .hside{align-items:flex-start}
   .exp-grid{grid-template-columns:repeat(2,1fr)}
-  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .sgrid{grid-template-columns:repeat(3,1fr)}
   .mgrid{grid-template-columns:1fr}
   .tgrid{grid-template-columns:repeat(2,1fr)}
   .wgrid{grid-template-columns:repeat(2,1fr)}
@@ -581,6 +589,7 @@ footer {
   .ham{display:flex}
   #spy{display:none}
   footer{padding:1.5rem 1.75rem}
+  .contact-layout{grid-template-columns:1fr;gap:2.5rem}
 }
 
 /* ── MOBILE (640px) ── */
@@ -616,11 +625,14 @@ footer {
   .shead{flex-direction:column;gap:.6rem;margin-bottom:2rem}
   .h2{font-size:clamp(1.8rem,7vw,2.5rem)}
   footer{
-    flex-direction:column;gap:.5rem;text-align:center;
+    flex-direction:column;gap:.75rem;text-align:center;
     padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
   }
-  .ceml-val{font-size:1.75rem}
-  .csub{font-size:.9rem}
+  .flinks{flex-wrap:wrap;justify-content:center;gap:.75rem 1.25rem}
+  .ceml-val{font-size:1.5rem}
+  .contact-layout{grid-template-columns:1fr;gap:2rem}
+  .ctz-row{flex-direction:column;gap:1rem}
+  .ctz-divider{width:40px;height:1px}
 }
 
 /* ── SMALL MOBILE (390px — iPhone 14/15) ── */
@@ -680,19 +692,19 @@ footer {
 <nav id="nav">
   <a class="logo" href="#hero">EONE</a>
   <ul class="nlinks">
-    <li><a href="#services">Our Services</a></li>
-    <li><a href="#experience">Our Experience</a></li>
-    <li><a href="#team">Our Team</a></li>
-    <li><a href="#why">Why EONE</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#why">Why Us</a></li>
   </ul>
   <button class="ncta" onclick="location.href='#contact'">Get in Touch</button>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
 <div id="mob">
-  <a href="#services"   onclick="document.getElementById('mob').classList.remove('open')">Our Services</a>
-  <a href="#experience" onclick="document.getElementById('mob').classList.remove('open')">Our Experience</a>
-  <a href="#team"       onclick="document.getElementById('mob').classList.remove('open')">Our Team</a>
-  <a href="#why"        onclick="document.getElementById('mob').classList.remove('open')">Why EONE</a>
+  <a href="#services"   onclick="document.getElementById('mob').classList.remove('open')">Services</a>
+  <a href="#experience" onclick="document.getElementById('mob').classList.remove('open')">Experience</a>
+  <a href="#team"       onclick="document.getElementById('mob').classList.remove('open')">Team</a>
+  <a href="#why"        onclick="document.getElementById('mob').classList.remove('open')">Why Us</a>
   <a href="#contact"    onclick="document.getElementById('mob').classList.remove('open')">Contact</a>
 </div>
 
@@ -713,14 +725,12 @@ footer {
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=1200&auto=format&q=75&fit=crop')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1200&auto=format&q=75&fit=crop')"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1470004914212-05527e49370b?w=1200&auto=format&q=75&fit=crop')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&auto=format&q=75&fit=crop')"></div>
   </div>
   <div class="hero-city-label">
     <span class="city-name active" data-city="0">Vancouver</span>
     <span class="city-name" data-city="1">Shanghai</span>
     <span class="city-name" data-city="2">Beijing</span>
     <span class="city-name" data-city="3">Taipei</span>
-    <span class="city-name" data-city="4">Kuala Lumpur</span>
   </div>
   <div class="hero-progress"><div class="hero-progress-bar" id="hpb"></div></div>
   <div class="hinner">
@@ -736,18 +746,15 @@ footer {
   <div class="wrap">
     <div class="shead rv">
       <div>
-        <div class="eyebrow lt">Our Services</div>
-        <h2 class="h2 lt">Full Cycle. <span>No Handoffs.</span></h2>
+        <div class="eyebrow">Our Services</div>
+        <h2 class="h2">Full Cycle. <span>No Handoffs.</span></h2>
       </div>
-      <p class="sub lt">From the first market snapshot to your first signed deal. We run the full cycle so you don't have to.</p>
+      <p class="sub">From the first market snapshot to your first signed deal. We run the full cycle so you don't have to.</p>
     </div>
     <div class="sgrid">
-      <div class="scard shim shim-dk rv"><div class="snum">01</div><div class="stitle">Market Landscape Analysis</div><p class="sbody">Market size, key players, buyer behavior, regulatory environment, and emerging trends. Clarity over volume.</p></div>
-      <div class="scard shim shim-dk rv"><div class="snum">02</div><div class="stitle">Competitive Intelligence</div><p class="sbody">Mapping local incumbents, international entrants, pricing dynamics, and white space. Where you can win — and where you cannot.</p></div>
-      <div class="scard shim shim-dk rv"><div class="snum">03</div><div class="stitle">Market Entry Strategy</div><p class="sbody">Tailored roadmap: market prioritization, GTM model, partnership structure, pricing, and phased execution plan.</p></div>
-      <div class="scard shim shim-dk rv"><div class="snum">04</div><div class="stitle">Lead Generation &amp; Deal Closure</div><p class="sbody">Full sales cycle — qualifying prospects, managing relationships, closing agreements, and onboarding channel partners.</p></div>
-      <div class="scard shim shim-dk rv"><div class="snum">05</div><div class="stitle">Supply Chain Optimization</div><p class="sbody">Identify reliable local suppliers, manage qualification, and build alternative supply chains from Greater China.</p></div>
-      <div class="scard shim shim-dk rv"><div class="snum">06</div><div class="stitle">Strategic Investment Access</div><p class="sbody">Connect with the right capital in Greater China — industrial funds, corporate venture arms aligned with your sector and growth stage.</p></div>
+      <div class="scard shim rv"><div class="snum">01</div><div class="stitle">Market Intelligence</div><p class="sbody">Before you commit capital, we give you clarity. Market characteristics, competitive landscape, regulatory environment, entry strategies. Honest analysis — not always the answer you want to hear.</p></div>
+      <div class="scard shim rv"><div class="snum">02</div><div class="stitle">Strategic Business Development</div><p class="sbody">We execute the strategies we come up with. From outreach through closed deals, we manage the full sales cycle as your in-market team.</p></div>
+      <div class="scard shim rv"><div class="snum">03</div><div class="stitle">Channel Partnerships</div><p class="sbody">We build the "China Partner" relationships that make sustainable growth possible. Partner qualification, negotiation, onboarding, and ongoing management — all in your name.</p></div>
     </div>
   </div>
 </section>
@@ -757,41 +764,31 @@ footer {
   <div class="wrap">
     <div class="shead rv">
       <div>
-        <div class="eyebrow lt">Our Experience</div>
-        <h2 class="h2 lt">Broad Reach. <span>Real Experience.</span></h2>
+        <div class="eyebrow">Experience</div>
+        <h2 class="h2">Broad Reach. <span>Real Experience.</span></h2>
       </div>
-      <p class="sub lt">From semiconductor fabs to clean energy projects — our team brings hands-on experience across the industries we serve.</p>
+      <p class="sub">From semiconductor fabs to clean energy projects — our team brings hands-on experience across the industries we serve.</p>
     </div>
     <div class="exp-grid">
       <div class="exp-card rv">
         <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80')"></div>
         <div class="exp-card-overlay"></div>
-        <div class="exp-card-content"><div class="exp-card-title">Semiconductors &amp; Deep Tech</div></div>
+        <div class="exp-card-content"><div class="exp-card-title">Semiconductors &amp; Electronics</div></div>
       </div>
       <div class="exp-card rv">
-        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80')"></div>
-        <div class="exp-card-overlay"></div>
-        <div class="exp-card-content"><div class="exp-card-title">Automotive &amp; Mobility</div></div>
-      </div>
-      <div class="exp-card rv">
-        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80')"></div>
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80')"></div>
         <div class="exp-card-overlay"></div>
         <div class="exp-card-content"><div class="exp-card-title">Connectivity &amp; IoT</div></div>
       </div>
       <div class="exp-card rv">
-        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80')"></div>
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80')"></div>
         <div class="exp-card-overlay"></div>
-        <div class="exp-card-content"><div class="exp-card-title">Clean Energy &amp; Materials</div></div>
+        <div class="exp-card-content"><div class="exp-card-title">Cleantech &amp; Energy</div></div>
       </div>
       <div class="exp-card rv">
-        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80')"></div>
+        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80')"></div>
         <div class="exp-card-overlay"></div>
-        <div class="exp-card-content"><div class="exp-card-title">Software &amp; Testing</div></div>
-      </div>
-      <div class="exp-card rv">
-        <div class="exp-card-bg" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"></div>
-        <div class="exp-card-overlay"></div>
-        <div class="exp-card-content"><div class="exp-card-title">Consumer &amp; Government</div></div>
+        <div class="exp-card-content"><div class="exp-card-title">Government Trade &amp; FDI</div></div>
       </div>
     </div>
   </div>
@@ -812,19 +809,14 @@ footer {
       <!-- Glen Wu -->
       <div class="tmcard shim rv">
         <div class="mphoto">
-          <div class="mphoto-ph">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="32" cy="24" r="12" fill="#A8AECA"/>
-              <path d="M4 60c0-15.464 12.536-28 28-28s28 12.536 28 28" fill="#A8AECA"/>
-            </svg>
-          </div>
+          <img src="glen-wu.png" alt="Glen Wu">
         </div>
         <div class="mname">Glen Wu</div>
         <div class="mtag-group">
           <div class="mtag-group-label">Markets</div>
           <div class="mtags">
             <span class="mtag geo">North America</span>
-            <span class="mtag geo">Europe</span>
+            <span class="mtag geo">China Mainland</span>
           </div>
         </div>
         <div class="mtag-group">
@@ -857,7 +849,7 @@ footer {
         <div class="mtag-group">
           <div class="mtag-group-label">Sectors</div>
           <div class="mtags">
-            <span class="mtag">Clean Tech</span>
+            <span class="mtag">Cleantech</span>
             <span class="mtag">Connectivity</span>
           </div>
         </div>
@@ -883,7 +875,7 @@ footer {
         <div class="mtag-group">
           <div class="mtag-group-label">Sectors</div>
           <div class="mtags">
-            <span class="mtag">FMCG</span>
+            <span class="mtag">Renewable Energy</span>
             <span class="mtag">Government</span>
           </div>
         </div>
@@ -924,25 +916,25 @@ footer {
   <div class="wrap">
     <div class="shead rv">
       <div>
-        <div class="eyebrow">Why EONE</div>
-        <h2 class="h2">Three Things That <span>Actually Matter</span></h2>
+        <div class="eyebrow lt">Why Us</div>
+        <h2 class="h2 lt">Three Things That <span>Actually Matter</span></h2>
       </div>
-      <p class="sub">We operate like your employee, not your consultant. Here is what that looks like in practice.</p>
+      <p class="sub lt">We operate like your employee, not your consultant. Here is what that looks like in practice.</p>
     </div>
     <div class="wgrid">
-      <div class="wcard shim rv">
+      <div class="wcard shim shim-dk rv">
         <div class="wno">01</div>
         <div class="wtitle">We Carry Your Card, Not Ours</div>
         <p class="wbody">When we walk into a meeting, we carry your business card and introduce ourselves as part of your team. Every conversation happens as if you were there yourself — because as far as your partners are concerned, we are you.</p>
         <div class="wfoot"><strong>What This Means</strong>Your partners and clients experience you — seamless, credible, fully in-house.</div>
       </div>
-      <div class="wcard shim rv">
+      <div class="wcard shim shim-dk rv">
         <div class="wno">02</div>
         <div class="wtitle">Industry Veterans, Not Generalists</div>
         <p class="wbody">We come from the industries we serve. Engineering backgrounds, hands-on commercial experience, no time wasted getting up to speed.</p>
-        <div class="wfoot"><strong>Relevant Sectors</strong>Semiconductors · Clean Energy · Advanced Manufacturing · EV · Deep Tech</div>
+        <div class="wfoot"><strong>Relevant Sectors</strong>Semiconductors & Electronics · Connectivity & IoT · Cleantech & Energy · Government Trade & FDI</div>
       </div>
-      <div class="wcard shim rv">
+      <div class="wcard shim shim-dk rv">
         <div class="wno">03</div>
         <div class="wtitle">We Already Know the Room</div>
         <p class="wbody">We speak the language — literally and culturally. Business in Greater China runs on relationships, context, and trust built over time. We bring all three.</p>
@@ -956,22 +948,45 @@ footer {
 <section id="contact" class="sec">
   <div class="contact-bg"></div>
   <div class="wrap" style="position:relative;z-index:1">
-    <div class="clayout rv">
-      <div class="eyebrow lt" style="justify-content:center">Get in Touch</div>
-      <h2 class="h2 lt" style="font-size:clamp(2.2rem,4vw,3.5rem);margin-bottom:.5rem">Start a <span>Conversation</span></h2>
-      <p class="csub">Hiring a local team in East Asia takes months and carries real risk. Engaging EONE takes a conversation. Tell us your market, your product, and your timeline — we'll tell you what it takes to win.</p>
-      <div class="ceml-lbl">Email us directly</div>
-      <a href="/cdn-cgi/l/email-protection#9ef6fbf2f2f1defbb3f1f0fbb0fdf1f3" class="ceml-val"><span class="__cf_email__" data-cfemail="442c2128282b0421692b2a216a272b29">[email&#160;protected]</span></a>
+    <div class="contact-layout rv">
+      <div class="contact-left">
+        <div class="eyebrow">Get in Touch</div>
+        <h2 class="h2" style="font-size:clamp(2.2rem,4vw,3.5rem);margin-bottom:1rem">Start a <span>Conversation</span></h2>
+        <p class="contact-desc">Hiring a local team in East Asia takes months and carries real risk. Engaging EONE takes a conversation. Tell us your market, your product, and your timeline — we'll tell you what it takes to win.</p>
+      </div>
+      <div class="contact-right">
+        <div class="ceml-lbl">Email us directly</div>
+        <a href="mailto:glen.wu@eoneglobal.ca" class="ceml-val">glen.wu@eoneglobal.ca</a>
+        <div class="ctz-stack">
+          <div class="ctz-item">
+            <span class="ctz-dot"></span>
+            <span class="ctz-city">Vancouver, Canada</span>
+            <span class="ctz-zone">PST · UTC−8</span>
+          </div>
+          <div class="ctz-item">
+            <span class="ctz-dot"></span>
+            <span class="ctz-city">Shanghai, China</span>
+            <span class="ctz-zone">CST · UTC+8</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="flogo">EONE</div>
-  <div class="fnote">© 2025 EONE · We Open Asia, You Scale.</div>
+  <div class="flinks">
+    <a href="#services">Services</a>
+    <a href="#experience">Experience</a>
+    <a href="#team">Team</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="fnote">© 2026 EONE · We Open Asia, You Scale.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── HERO SLIDESHOW ──
 (function(){
   const slides = document.querySelectorAll('.hero-slide');
@@ -1083,7 +1098,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 const SECS=['hero','services','experience','team','why','contact'];
-const DARK=['services','experience','contact'];
+const DARK=['why'];
 const sws=document.querySelectorAll('.sw');
 const nls=document.querySelectorAll('.nlinks a');
 const spy=document.getElementById('spy');
