@@ -114,8 +114,7 @@ body{font-family:var(--font);background:var(--white);color:var(--text);-webkit-f
 .exp-card{position:relative;overflow:hidden;border-radius:var(--rad);height:200px}
 .exp-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
 .exp-card:hover .exp-card-bg{transform:scale(1.07)}
-.exp-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,24,112,.88) 0%,rgba(15,24,112,.35) 60%,rgba(15,24,112,.1) 100%);transition:background .3s}
-.exp-card:hover .exp-card-overlay{background:linear-gradient(to top,rgba(24,42,163,.92) 0%,rgba(24,42,163,.5) 70%,rgba(24,42,163,.15) 100%)}
+.exp-card-overlay{display:none;}
 .exp-card-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
 .exp-card-title{font-family:var(--font);font-weight:800;font-size:.78rem;letter-spacing:.04em;color:white;line-height:1.3;text-transform:uppercase}
 #team{background:var(--off);border-top:1px solid var(--g1)}
