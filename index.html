@@ -44,7 +44,7 @@ body{font-family:var(--font);background:var(--white);color:var(--text);-webkit-f
 @keyframes shim{0%{transform:translateX(-130%) skewX(-10deg)}100%{transform:translateX(280%) skewX(-10deg)}}
 .shim{position:relative;overflow:hidden}
 .shim::before{content:'';position:absolute;inset:0;width:45%;z-index:6;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-130%) skewX(-10deg);pointer-events:none}
-.shim:hover::before{animation:shim .6s ease forwards}
+.shim:hover::before{animation:none;}
 .shim-dk::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
 @keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .rv{opacity:0;transform:translateY(18px)}
